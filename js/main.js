@@ -2073,3 +2073,52 @@
 
   
 })(jQuery);
+
+
+function setActive(clickedItem) {
+            // Remove active class from all items
+            document.querySelectorAll('.emerald-nav-item').forEach(item => {
+                item.classList.remove('emerald-active');
+            });
+            
+            // Add active class to clicked item
+            clickedItem.classList.add('emerald-active');
+            
+            // Create ripple effect
+            createRipple(clickedItem);
+        }
+
+        function createRipple(element) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.className = 'emerald-nav-ripple';
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = '50%';
+            ripple.style.top = '50%';
+            ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+            
+            element.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add touch feedback for mobile
+        document.querySelectorAll('.emerald-nav-item').forEach(item => {
+            item.addEventListener('touchstart', function(e) {
+                this.style.transform = 'translateY(-1px) scale(0.95)';
+            });
+            
+            item.addEventListener('touchend', function(e) {
+                setTimeout(() => {
+                    if (this.classList.contains('emerald-active')) {
+                        this.style.transform = 'translateY(-3px) scale(1)';
+                    } else {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    }
+                }, 100);
+            });
+        });
