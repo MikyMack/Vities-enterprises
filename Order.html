@@ -21,6 +21,20 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+    .ltn__tab-menu-list .nav a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        font-weight: 500;
+    }
+    .ltn__tab-menu-list .nav a i {
+        margin-left: 10px;
+        color: var(--ltn__secondary-color);
+    }
+</style>
+
 </head>
 
 <body>
@@ -446,11 +460,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ltn__breadcrumb-inner">
-                        <h1 class="page-title">My Account</h1>
+                        <h1 class="page-title">My Orders</h1>
                         <div class="ltn__breadcrumb-list">
                             <ul>
                                 <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
-                                <li>My Account</li>
+                                <li>My Orders</li>
                             </ul>
                         </div>
                     </div>
@@ -461,151 +475,396 @@
     <!-- BREADCRUMB AREA END -->
 
     <!-- WISHLIST AREA START -->
-    <div class="liton__wishlist-area pb-70">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- PRODUCT TAB AREA START -->
-                    <div class="ltn__product-tab-area">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="ltn__tab-menu-list mb-50">
-                                        <div class="nav">
-                                            <a class="active show" data-bs-toggle="tab" href="#liton_tab_1_1">Dashboard <i class="fas fa-home"></i></a>
-                                            <a  href="Order.html">Orders <i class="fas fa-file-alt"></i></a>
-                                            <a data-bs-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
-                                            <a data-bs-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a>
-                                            <a data-bs-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
-                                            <a href="login.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+   <div class="ltn__product-tab-area">
+    <div class="container">
+        <div class="row">
+            <!-- LEFT: Order Tabs -->
+            <div class="col-lg-4">
+                <div class="ltn__tab-menu-list mb-50">
+                    <div class="nav flex-column">
+                        <a class="active show" data-bs-toggle="tab" href="#order_history">Order History <i class="fas fa-history"></i></a>
+                        <a data-bs-toggle="tab" href="#order_details">Order Details <i class="fas fa-info-circle"></i></a>
+                        <a data-bs-toggle="tab" href="#return_orders">Return Orders <i class="fas fa-undo"></i></a>
+                        <a data-bs-toggle="tab" href="#order_status">Order Status <i class="fas fa-shipping-fast"></i></a>
+                        <a data-bs-toggle="tab" href="#order_invoice">Invoices <i class="fas fa-file-invoice"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Tab Contents -->
+            <div class="col-lg-8">
+                <div class="tab-content">
+
+                    <!-- Order History -->
+                    <div class="tab-pane fade active show" id="order_history">
+                        <div class="ltn__myaccount-tab-content-inner" style="padding: 20px; background-color: #f2f6fa; border-radius: 10px;">
+                            <h4 style="margin-bottom: 20px; font-weight: 600;">🛍️ Your Order History</h4>
+
+                            <!-- Search & Filter -->
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                                <input type="text" placeholder="🔍 Search by Order ID..." style="flex: 1; min-width: 220px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                    <option>Filter by Status</option>
+                                    <option>Pending</option>
+                                    <option>Shipped</option>
+                                    <option>Delivered</option>
+                                    <option>Cancelled</option>
+                                </select>
+                            </div>
+
+                            <!-- Order Cards -->
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;">
+                                    <div>
+                                        <strong>Order ID:</strong> #1001<br>
+                                        <strong>Date:</strong> May 01, 2025
+                                    </div>
+                                    <div>
+                                        <strong>Status:</strong> <span style="color: green;">Delivered</span><br>
+                                        <strong>Total:</strong> ₹2,500.00
+                                    </div>
+                                    <div style="align-self: flex-end;">
+                                        <a href="#" onclick="openModal('orderModal1')" style="color: #007BFF; text-decoration: underline;">View Details</a> |
+                                        <a href="#" style="color: #007BFF; text-decoration: underline;">Reorder</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;">
+                                    <div>
+                                        <strong>Order ID:</strong> #1000<br>
+                                        <strong>Date:</strong> Apr 20, 2025
+                                    </div>
+                                    <div>
+                                        <strong>Status:</strong> <span style="color: green;">Delivered</span><br>
+                                        <strong>Total:</strong> ₹4,999.00
+                                    </div>
+                                    <div style="align-self: flex-end;">
+                                        <a href="#" onclick="openModal('orderModal2')" style="color: #007BFF; text-decoration: underline;">View Details</a> |
+                                        <a href="#" style="color: #007BFF; text-decoration: underline;">Reorder</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Details -->
+                    <div class="tab-pane fade" id="order_details">
+                        <div class="ltn__myaccount-tab-content-inner" style="padding: 20px; background-color: #f2f6fa; border-radius: 10px;">
+                            <h4 style="margin-bottom: 20px; font-weight: 600;">📋 Order Details</h4>
+                            
+                            <!-- Search & Filter -->
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                                <input type="text" placeholder="🔍 Search by Order ID..." style="flex: 1; min-width: 220px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                    <option>Filter by Date</option>
+                                    <option>Last 7 days</option>
+                                    <option>Last 30 days</option>
+                                    <option>Last 6 months</option>
+                                </select>
+                            </div>
+                            
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 10px;">
+                                    <div>
+                                        <strong>Order ID:</strong> #1001<br>
+                                        <strong>Date:</strong> May 01, 2025
+                                    </div>
+                                    <div>
+                                        <strong>Status:</strong> <span style="color: green;">Delivered</span><br>
+                                        <strong>Total:</strong> ₹2,500.00
+                                    </div>
+                                </div>
+                                <hr style="margin: 10px 0; border-color: #eee;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+                                    <img src="https://via.placeholder.com/80" alt="Product" style="border-radius: 5px;">
+                                    <div>
+                                        <strong>Vitamin C Tablets</strong><br>
+                                        Quantity: 2<br>
+                                        Price: ₹1,250.00 each
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <a href="#" style="color: #007BFF; text-decoration: underline;">Download Invoice</a>
+                                </div>
+                            </div>
+                            
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 10px;">
+                                    <div>
+                                        <strong>Order ID:</strong> #1000<br>
+                                        <strong>Date:</strong> Apr 20, 2025
+                                    </div>
+                                    <div>
+                                        <strong>Status:</strong> <span style="color: green;">Delivered</span><br>
+                                        <strong>Total:</strong> ₹4,999.00
+                                    </div>
+                                </div>
+                                <hr style="margin: 10px 0; border-color: #eee;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+                                    <img src="https://via.placeholder.com/80" alt="Product" style="border-radius: 5px;">
+                                    <div>
+                                        <strong>Multivitamin Capsules</strong><br>
+                                        Quantity: 1<br>
+                                        Price: ₹4,999.00
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <a href="#" style="color: #007BFF; text-decoration: underline;">Download Invoice</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Return Orders -->
+                    <div class="tab-pane fade" id="return_orders">
+                        <div class="ltn__myaccount-tab-content-inner" style="padding: 20px; background-color: #f2f6fa; border-radius: 10px;">
+                            <h4 style="margin-bottom: 20px; font-weight: 600;">🔄 Return Orders</h4>
+                            
+                            <!-- Search & Filter -->
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                                <input type="text" placeholder="🔍 Search by Order ID..." style="flex: 1; min-width: 220px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                    <option>Filter by Status</option>
+                                    <option>Requested</option>
+                                    <option>Processing</option>
+                                    <option>Completed</option>
+                                </select>
+                            </div>
+                            
+                            <div style="text-align: center; padding: 40px 20px; background: #f9fbff; border: 1px dashed #ccc; border-radius: 10px;">
+                                <div style="font-size: 50px; margin-bottom: 20px;">📦</div>
+                                <h5 style="margin-bottom: 10px;">No Return Requests Yet</h5>
+                                <p style="margin-bottom: 20px; color: #666;">You haven't requested any returns for your orders.</p>
+                                <button style="padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Initiate Return</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Status -->
+                    <div class="tab-pane fade" id="order_status">
+                        <div class="ltn__myaccount-tab-content-inner" style="padding: 20px; background-color: #f2f6fa; border-radius: 10px;">
+                            <h4 style="margin-bottom: 20px; font-weight: 600;">🚚 Track Your Orders</h4>
+                            
+                            <!-- Search & Filter -->
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                                <input type="text" placeholder="🔍 Search by Order ID..." style="flex: 1; min-width: 220px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                    <option>Filter by Status</option>
+                                    <option>Processing</option>
+                                    <option>Shipped</option>
+                                    <option>In Transit</option>
+                                    <option>Delivered</option>
+                                </select>
+                            </div>
+                            
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 15px;">
+                                    <div>
+                                        <strong>Order ID:</strong> #1001<br>
+                                        <strong>Placed On:</strong> May 01, 2025
+                                    </div>
+                                    <div>
+                                        <strong>Status:</strong> <span style="color: orange;">In Transit</span><br>
+                                        <strong>Expected Delivery:</strong> May 05, 2025
+                                    </div>
+                                </div>
+                                
+                                <!-- Tracking Progress -->
+                                <div style="position: relative; padding-left: 50px; margin-bottom: 10px;">
+                                    <div style="position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: #007BFF;"></div>
+                                    
+                                    <div style="position: relative; margin-bottom: 25px;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #007BFF; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>Order Placed</strong><br>
+                                            <span style="color: #666;">May 01, 2025</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="position: relative; margin-bottom: 25px;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #007BFF; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>Shipped</strong><br>
+                                            <span style="color: #666;">May 02, 2025</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="position: relative; margin-bottom: 25px;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #ddd; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>In Transit</strong><br>
+                                            <span style="color: #666;">Expected May 04, 2025</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="position: relative;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #ddd; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>Delivered</strong><br>
+                                            <span style="color: #666;">Expected May 05, 2025</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-8">
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade active show" id="liton_tab_1_1">
-                                            <div class="ltn__myaccount-tab-content-inner">
-                                                <p>Hello <strong>UserName</strong> (not <strong>UserName</strong>? <small><a href="login-register.html">Log out</a></small> )</p>
-                                                <p>From your account dashboard you can view your <span>recent orders</span>, manage your <span>shipping and billing addresses</span>, and <span>edit your password and account details</span>.</p>
-                                            </div>
+                            </div>
+                            
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 10px;">
+                                    <div>
+                                        <strong>Order ID:</strong> #0999<br>
+                                        <strong>Placed On:</strong> Apr 15, 2025
+                                    </div>
+                                    <div>
+                                        <strong>Status:</strong> <span style="color: green;">Delivered</span><br>
+                                        <strong>Delivered On:</strong> Apr 18, 2025
+                                    </div>
+                                </div>
+                                
+                                <!-- Tracking Progress -->
+                                <div style="position: relative; padding-left: 50px;">
+                                    <div style="position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: #007BFF;"></div>
+                                    
+                                    <div style="position: relative; margin-bottom: 25px;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #007BFF; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>Order Placed</strong><br>
+                                            <span style="color: #666;">Apr 15, 2025</span>
                                         </div>
-                                        <div class="tab-pane fade" id="liton_tab_1_2">
-    
-
-                                        <div class="tab-pane fade" id="liton_tab_1_3">
-                                            <div class="ltn__myaccount-tab-content-inner">
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Product</th>
-                                                                <th>Date</th>
-                                                                <th>Expire</th>
-                                                                <th>Download</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Carsafe - Car Service PSD Template</td>
-                                                                <td>Nov 22, 2020</td>
-                                                                <td>Yes</td>
-                                                                <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Carsafe - Car Service HTML Template</td>
-                                                                <td>Nov 10, 2020</td>
-                                                                <td>Yes</td>
-                                                                <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Carsafe - Car Service WordPress Theme</td>
-                                                                <td>Nov 12, 2020</td>
-                                                                <td>Yes</td>
-                                                                <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    
+                                    <div style="position: relative; margin-bottom: 25px;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #007BFF; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>Shipped</strong><br>
+                                            <span style="color: #666;">Apr 16, 2025</span>
                                         </div>
-                                        <div class="tab-pane fade" id="liton_tab_1_4">
-                                            <div class="ltn__myaccount-tab-content-inner">
-                                                <p>The following addresses will be used on the checkout page by default.</p>
-                                                <div class="row">
-                                                    <div class="col-md-6 col-12 learts-mb-30">
-                                                        <h4>Billing Address <small><a href="#">edit</a></small></h4>
-                                                        <address>
-                                                            <p><strong>Alex Tuntuni</strong></p>
-                                                            <p>1355 Market St, Suite 900 <br>
-                                                                San Francisco, CA 94103</p>
-                                                            <p>Mobile: (123) 456-7890</p>
-                                                        </address>
-                                                    </div>
-                                                    <div class="col-md-6 col-12 learts-mb-30">
-                                                        <h4>Shipping Address <small><a href="#">edit</a></small></h4>
-                                                        <address>
-                                                            <p><strong>Alex Tuntuni</strong></p>
-                                                            <p>1355 Market St, Suite 900 <br>
-                                                                San Francisco, CA 94103</p>
-                                                            <p>Mobile: (123) 456-7890</p>
-                                                        </address>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    
+                                    <div style="position: relative; margin-bottom: 25px;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #007BFF; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>In Transit</strong><br>
+                                            <span style="color: #666;">Apr 17, 2025</span>
                                         </div>
-                                        <div class="tab-pane fade" id="liton_tab_1_5">
-                                            <div class="ltn__myaccount-tab-content-inner">
-                                                <p>The following addresses will be used on the checkout page by default.</p>
-                                                <div class="ltn__form-box">
-                                                    <form action="#">
-                                                        <div class="row mb-50">
-                                                            <div class="col-md-6">
-                                                                <label>First name:</label>
-                                                                <input type="text" name="ltn__name">
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label>Last name:</label>
-                                                                <input type="text" name="ltn__lastname">
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label>Display Name:</label>
-                                                                <input type="text" name="ltn__lastname" placeholder="Ethan">
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label>Display Email:</label>
-                                                                <input type="email" name="ltn__lastname" placeholder="example@example.com">
-                                                            </div>
-                                                        </div>
-                                                        <fieldset>
-                                                            <legend>Password change</legend>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <label>Current password (leave blank to leave unchanged):</label>
-                                                                    <input type="password" name="ltn__name">
-                                                                    <label>New password (leave blank to leave unchanged):</label>
-                                                                    <input type="password" name="ltn__lastname">
-                                                                    <label>Confirm new password:</label>
-                                                                    <input type="password" name="ltn__lastname">
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                        <div class="btn-wrapper">
-                                                            <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Save Changes</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    
+                                    <div style="position: relative;">
+                                        <div style="position: absolute; left: -30px; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #007BFF; border: 4px solid white;"></div>
+                                        <div>
+                                            <strong>Delivered</strong><br>
+                                            <span style="color: #666;">Apr 18, 2025</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- PRODUCT TAB AREA END -->
+
+                    <!-- Invoice -->
+                    <div class="tab-pane fade" id="order_invoice">
+                        <div class="ltn__myaccount-tab-content-inner" style="padding: 20px; background-color: #f2f6fa; border-radius: 10px;">
+                            <h4 style="margin-bottom: 20px; font-weight: 600;">🧾 Your Invoices</h4>
+                            
+                            <!-- Search & Filter -->
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                                <input type="text" placeholder="🔍 Search by Invoice ID..." style="flex: 1; min-width: 220px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                    <option>Filter by Date</option>
+                                    <option>Last 30 days</option>
+                                    <option>Last 3 months</option>
+                                    <option>Last 6 months</option>
+                                </select>
+                            </div>
+                            
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 10px;">
+                                    <div>
+                                        <strong>Invoice ID:</strong> INV-1001<br>
+                                        <strong>Order ID:</strong> #1001<br>
+                                        <strong>Date:</strong> May 01, 2025
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <strong>Amount:</strong> ₹2,500.00<br>
+                                        <a href="#" style="color: #007BFF; text-decoration: underline;">Download PDF</a> | 
+                                        <a href="#" style="color: #007BFF; text-decoration: underline;">Print</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: #f9fbff; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px;">
+                                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 10px;">
+                                    <div>
+                                        <strong>Invoice ID:</strong> INV-1000<br>
+                                        <strong>Order ID:</strong> #1000<br>
+                                        <strong>Date:</strong> Apr 20, 2025
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <strong>Amount:</strong> ₹4,999.00<br>
+                                        <a href="#" style="color: #007BFF; text-decoration: underline;">Download PDF</a> | 
+                                        <a href="#" style="color: #007BFF; text-decoration: underline;">Print</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- POPUP MODAL for Order History -->
+<div id="orderModal1" style="display: none; position: fixed; top: 0; left: 0; z-index: 9999; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); justify-content: center; align-items: center;">
+  <div style="background: #fff; padding: 20px; border-radius: 10px; width: 90%; max-width: 500px; position: relative;">
+    <span onclick="closeModal('orderModal1')" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer;">&times;</span>
+    <h4 style="margin-bottom: 15px;">Order #1001 - Details</h4>
+    <img src="https://via.placeholder.com/100" alt="Product" style="float: left; margin-right: 15px; border-radius: 6px;">
+    <p><strong>Product:</strong> Vitamin C Tablets</p>
+    <p><strong>Quantity:</strong> 2</p>
+    <p><strong>Price:</strong> ₹1,250.00 each</p>
+    <p><strong>Total:</strong> ₹2,500.00</p>
+    <p><strong>Status:</strong> Delivered</p>
+    <p><strong>Delivery Date:</strong> May 03, 2025</p>
+  </div>
+</div>
+
+<div id="orderModal2" style="display: none; position: fixed; top: 0; left: 0; z-index: 9999; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); justify-content: center; align-items: center;">
+  <div style="background: #fff; padding: 20px; border-radius: 10px; width: 90%; max-width: 500px; position: relative;">
+    <span onclick="closeModal('orderModal2')" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer;">&times;</span>
+    <h4 style="margin-bottom: 15px;">Order #1000 - Details</h4>
+    <img src="https://via.placeholder.com/100" alt="Product" style="float: left; margin-right: 15px; border-radius: 6px;">
+    <p><strong>Product:</strong> Multivitamin Capsules</p>
+    <p><strong>Quantity:</strong> 1</p>
+    <p><strong>Price:</strong> ₹4,999.00</p>
+    <p><strong>Total:</strong> ₹4,999.00</p>
+    <p><strong>Status:</strong> Delivered</p>
+    <p><strong>Delivery Date:</strong> Apr 22, 2025</p>
+  </div>
+</div>
+
+<!-- Inline JS for Modal -->
+<script>
+  function openModal(id) {
+    document.getElementById(id).style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+  }
+  
+  // Close modal when clicking outside of it
+  window.onclick = function(event) {
+    if (event.target.className === 'modal') {
+      event.target.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  }
+</script>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
     <!-- WISHLIST AREA START -->
 
     <!-- CALL TO ACTION START (call-to-action-6) -->
